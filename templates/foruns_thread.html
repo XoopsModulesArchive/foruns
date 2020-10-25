@@ -1,0 +1,89 @@
+<!-- start comment post -->
+        <tr>
+          <td class="head"><a id="forumpost<{$topic_post.post_id}>"></a> <{$topic_post.poster_uname}></td>
+          <td class="head"><div class="comDate"><span class="comDateCaption"><{$lang_postedon}></span> <{$topic_post.post_date}></div></td>
+        </tr>
+        <tr>
+
+          <{if $topic_post.poster_uid != 0}>
+
+          <td class="odd"><div class="comUserRank"><div class="comUserRankText"><{$topic_post.poster_rank_title}></div><{$topic_post.poster_rank_image}></div><img class="comUserImg" src="<{$xoops_upload_url}>/<{$topic_post.poster_avatar}>" alt=""><div class="comUserStat"><span class="comUserStatCaption"><{$lang_joined}>:</span> <{$topic_post.poster_regdate}></div><div class="comUserStat"><span class="comUserStatCaption"><{$lang_from}>:</span> <{$topic_post.poster_from}></div><div class="comUserStat"><span class="comUserStatCaption"><{$lang_posts}>:</span> <{$topic_post.poster_postnum}></div><div class="comUserStatus"><{$topic_post.poster_status}></div><div class="comUserStat"><span class="comUserStatCaption">IP:</span> <{$topic_post.post_poster_ip}></div></td>
+
+          <{else}>
+
+          <td class="odd"><div class="comUserStat"><span class="comUserStatCaption">IP:</span> <{$topic_post.post_poster_ip}></div></td>
+
+          <{/if}>
+
+          <td class="odd">
+            <div class="comTitle"><{$topic_post.post_title}></div><div class="comText"><{$topic_post.post_text}></div>
+          </td>
+        </tr>
+
+       <{if $topic_post.poster_uid != 0}>
+          <!--user icons-->
+          <tr>
+          <td class="head"></td>
+          <td class="head" align="left">
+          <!--pm-->
+          <{if $xoops_isuser === true}>
+           <a href="javascript:openWithSelfMain('<{$xoops_url}>/pmlite.php?send2=1&amp;to_userid=<{$topic_post.poster_uid}>','pmlite',450,370);"><img src="<{$xoops_url}>/images/icons/pm.gif" alt="<{$lang_pm}>"></a>
+          <{/if}>
+          <!--email-->
+          <{if $topic_post.add_user_viewmail && $topic_post.add_user_email}>
+            <a href="mailto:<{$topic_post.add_user_email}>"><img src="<{$xoops_url}>/images/icons/email.gif" alt="<{$lang_email}>"></a>
+		  <{/if}>
+		 <!--www-->
+          <{if $topic_post.add_user_www}>
+            <a href="<{$topic_post.add_user_www}>"><img src="<{$xoops_url}>/images/icons/www.gif" alt="<{$lang_www}>"></a>
+		  <{/if}>
+          <!--icq-->
+          <{if $topic_post.add_user_icq}>
+            <a href="http://wwp.icq.com/scripts/search.dll?to=<{$topic_post.add_user_icq}>"><img src="<{$xoops_url}>/images/icons/icq_add.gif" alt="<{$lang_icq}>"></a>
+		  <{/if}>
+          <!--aim-->
+          <{if $topic_post.add_user_aim}>
+            <a href="aim:goim?screenname=<{$topic_post.add_user_aim}>&message=Hi$topic_post.add_user_aim+<{$topic_post.add_user_aim}>+Are+you+there?"><img src="<{$xoops_url}>/images/icons/aim.gif" alt="<{$lang_aim}>"></a>
+		  <{/if}>
+		  
+          <!--yim-->
+          <{if $topic_post.add_user_yim}>
+            <a href="http://edit.yahoo.com/config/send_webmesg?.target=<{$topic_post.add_user_yim}>&.src=pg"><img src="<{$xoops_url}>/images/icons/yim.gif" alt="<{$lang_yim}>"></a>
+		  <{/if}>
+          <!--msnm-->
+          <{if $topic_post.add_user_msnm}>
+            <a href="<{$xoops_url}>/userinfo.php?uid=<{$topic_post.poster_uid}>"><img src="<{$xoops_url}>/images/icons/msnm.gif" alt="<{$lang_msnm}>"></a>
+		  <{/if}>
+
+          </td>
+        </tr>
+     <{/if}>
+
+          
+          <!--admin icons-->
+        <tr>
+          <td class="even"></td>
+
+          <{if $viewer_is_admin === true}>
+
+          <td class="even" align="right">
+            <a href="edit.php?forum=<{$forum_id}>&amp;post_id=<{$topic_post.post_id}>&amp;topic_id=<{$topic_id}>&amp;viewmode=<{$topic_viewmode}>&amp;order=<{$topic_order}>"><img src="<{$xoops_url}>/images/icons/edit.gif" alt="<{$lang_edit}>"></a><a href='delete.php?forum=<{$forum_id}>&amp;topic_id=<{$topic_id}>&amp;post_id=<{$topic_post.post_id}>&amp;viewmode=<{$topic_viewmode}>&amp;order=<{$topic_order}>'><img src="<{$xoops_url}>/images/icons/delete.gif" alt="<{$lang_delete}>"></a><a href='reply.php?forum=<{$forum_id}>&amp;post_id=<{$topic_post.post_id}>&amp;topic_id=<{$topic_id}>&amp;viewmode=<{$topic_viewmode}>&amp;order=<{$topic_order}>'><img src="<{$xoops_url}>/images/icons/reply.gif" alt="<{$lang_reply}>"></a>
+          </td>
+
+          <{elseif $xoops_isuser === true && $xoops_userid == $topic_post.poster_uid}>
+
+          <td class="even" align="right">
+            <a href="edit.php?forum=<{$forum_id}>&amp;post_id=<{$topic_post.post_id}>&amp;topic_id=<{$topic_id}>&amp;viewmode=<{$topic_viewmode}>&amp;order=<{$topic_order}>"><img src="<{$xoops_url}>/images/icons/edit.gif" alt="<{$lang_edit}>"></a><a href='reply.php?forum=<{$forum_id}>&amp;post_id=<{$topic_post.post_id}>&amp;topic_id=<{$topic_id}>&amp;viewmode=<{$topic_viewmode}>&amp;order=<{$topic_order}>'><img src="<{$xoops_url}>/images/icons/reply.gif" alt="<{$lang_reply}>"></a>
+          </td>
+
+          <{elseif $viewer_can_post === true}>
+
+          <td class="even" align="right">
+            <a href='reply.php?forum=<{$forum_id}>&amp;post_id=<{$topic_post.post_id}>&amp;topic_id=<{$topic_id}>&amp;viewmode=<{$topic_viewmode}>&amp;order=<{$topic_order}>'><img src="<{$xoops_url}>/images/icons/reply.gif" alt="<{$lang_reply}>"></a>
+          </td>
+
+          <{else}>
+
+          <td class="even"> </td>
+
+          <{/if}></tr><!-- end comment post -->
